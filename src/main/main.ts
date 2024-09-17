@@ -31,6 +31,13 @@ ipcMain.on('ipc-example', async (event, arg) => {
   event.reply('ipc-example', msgTemplate('pong'));
 });
 
+ipcMain.on('file-export', async (event, arg) => {
+  const msgTemplate = (pingPong: string) =>
+    `IPC test for file export: ${pingPong}`;
+  console.log(msgTemplate(arg));
+  event.reply('file-export', msgTemplate('pong'));
+});
+
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();
